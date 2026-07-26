@@ -1,0 +1,18 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+
+# Logs and local run artifacts
+*.log
+scripts/_smoke_test_output.xlsx
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Frontend: node_modules, .next, env files etc. are handled by frontend/.gitignore
