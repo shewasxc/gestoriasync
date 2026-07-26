@@ -31,13 +31,18 @@ app = FastAPI(title="GestoriaSync API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    # allow_origin_regex covers any localhost dev port (Next.js falls back to
-    # 3001, 3002... when 3000 is already taken by another project).
-    allow_origin_regex=r"http://(localhost|127\.0\.0\.1):\d+",
+    # Covers any localhost dev port (Next.js falls back to 3001, 3002... when
+    # 3000 is taken) plus the production domain and Vercel preview deployments.
+    allow_origin_regex=r"http://(localhost|127\.0\.0\.1):\d+|https://gestoriasync(-[a-z0-9-]+)?\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.get("/")
+def root() -> dict[str, str]:
+    return {"status": "ok", "service": "GestoriaSync API"}
 
 
 # --- /api/parse --------------------------------------------------------------
