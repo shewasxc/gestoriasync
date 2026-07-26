@@ -2,6 +2,9 @@
 
 **Consolidate bank statements and invoices for Spanish accounting firms (Gestorías) — in seconds, not hours.**
 
+**Live demo:** [gestoriasync.vercel.app](https://gestoriasync.vercel.app) · [gestoriasync.vercel.app/dashboard](https://gestoriasync.vercel.app/dashboard) — try it with the sample files in [`demo_files/`](demo_files/), no signup required.
+API deployed at [gestoriasync-api.onrender.com](https://gestoriasync-api.onrender.com) (interactive docs at [`/docs`](https://gestoriasync-api.onrender.com/docs); free-tier instance spins down after inactivity, first request can take ~30s to wake up).
+
 GestoriaSync ingests bank statements from multiple Spanish banks (BBVA, Santander, CaixaBank) in mixed formats (PDF, XLSX, CSV), auto-detects each file's shape even when column names differ, normalizes dates and European-format currency, validates every Spanish tax ID (DNI/NIE/CIF) against the official checksum algorithm, categorizes each expense, and exports a single Excel report with **live formulas** (`SUMIFS`, `VLOOKUP`) instead of static values.
 
 ![GestoriaSync dashboard](docs/screenshots/dashboard.png)
@@ -31,6 +34,7 @@ Closing a quarter manually means opening every bank export, renaming columns by 
 
 **Backend** — Python 3.12+, FastAPI, Pydantic v2, pandas, openpyxl, pdfplumber, rapidfuzz
 **Frontend** — Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS v4, shadcn/ui
+**Deployment** — frontend on Vercel, backend on Render, both auto-deploying from `main`
 
 ## Architecture
 
@@ -66,6 +70,8 @@ The `core/` package has no dependency on FastAPI or any web framework — it's a
 
 ## Getting started
 
+Running locally isn't required to try it — see the live demo above. These steps are for running your own copy.
+
 ### Backend
 
 ```bash
@@ -86,7 +92,7 @@ cp .env.local.example .env.local   # points NEXT_PUBLIC_API_URL at the backend
 npm run dev
 ```
 
-The app is now at `http://localhost:3000` — landing page at `/`, working dashboard at `/dashboard`.
+The app is now at `http://localhost:3000` (Next.js picks the next free port, e.g. `3001`, if 3000 is taken) — landing page at `/`, working dashboard at `/dashboard`.
 
 ### Try it with sample data
 
