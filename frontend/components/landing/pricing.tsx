@@ -11,6 +11,7 @@ const PLANS = [
     features: ["Hasta 3 archivos al mes", "Validación NIF/CIF", "Exportación a Excel", "1 usuario"],
     cta: "Empezar gratis",
     highlighted: false,
+    href: undefined as string | undefined,
   },
   {
     name: "Profesional",
@@ -26,6 +27,7 @@ const PLANS = [
     ],
     cta: "Probar Demo en Vivo",
     highlighted: true,
+    href: undefined as string | undefined,
   },
   {
     name: "Asesoría",
@@ -41,6 +43,7 @@ const PLANS = [
     ],
     cta: "Hablar con ventas",
     highlighted: false,
+    href: "https://github.com/shewasxc/gestoriasync",
   },
 ];
 
@@ -89,7 +92,12 @@ export function Pricing() {
                 ))}
               </ul>
 
-              <Link href="/dashboard" className="mt-8 block">
+              <Link
+                href={plan.href ?? "/dashboard"}
+                target={plan.href ? "_blank" : undefined}
+                rel={plan.href ? "noopener noreferrer" : undefined}
+                className="mt-8 block"
+              >
                 <Button
                   className={`h-11 w-full rounded-full font-semibold ${
                     plan.highlighted

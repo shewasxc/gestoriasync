@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AlertCircle, Download, Loader2, RotateCcw } from "lucide-react";
-import { DashboardSidebar } from "@/components/dashboard/sidebar";
+import { DashboardSidebar, DashboardMobileTopBar } from "@/components/dashboard/sidebar";
 import { UploadZone } from "@/components/dashboard/upload-zone";
 import { KpiCards } from "@/components/dashboard/kpi-cards";
 import { MovementsTable } from "@/components/dashboard/movements-table";
@@ -62,7 +62,8 @@ export default function DashboardPage() {
     <div className="flex min-h-screen bg-background">
       <DashboardSidebar />
 
-      <div className="flex-1">
+      <div className="min-w-0 flex-1">
+        <DashboardMobileTopBar />
         <header className="flex h-16 items-center justify-between border-b border-border px-6 lg:px-8">
           <div>
             <h1 className="text-[15px] font-semibold text-foreground">Procesar extractos</h1>

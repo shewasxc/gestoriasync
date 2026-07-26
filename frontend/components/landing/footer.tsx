@@ -15,16 +15,16 @@ const COLUMNS = [
   {
     title: "Legal",
     links: [
-      { label: "Términos y condiciones", href: "#" },
-      { label: "Política de Privacidad", href: "#" },
-      { label: "Cumplimiento RGPD", href: "#" },
+      { label: "Términos y condiciones", href: "/legal/terminos" },
+      { label: "Política de Privacidad", href: "/legal/privacidad" },
+      { label: "Cumplimiento RGPD", href: "/legal/rgpd" },
     ],
   },
   {
     title: "Empresa",
     links: [
-      { label: "Contacto", href: "#" },
-      { label: "Soporte", href: "#" },
+      { label: "Código fuente", href: "https://github.com/shewasxc/gestoriasync" },
+      { label: "Soporte / Issues", href: "https://github.com/shewasxc/gestoriasync/issues" },
     ],
   },
 ];
@@ -66,16 +66,21 @@ export function Footer() {
             <div key={col.title}>
               <h4 className="text-xs font-semibold tracking-wide text-[#4f46e5] uppercase">{col.title}</h4>
               <ul className="mt-4 space-y-2.5">
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-[#4a4560] transition-colors hover:text-[#0b0a12]"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+                {col.links.map((link) => {
+                  const external = link.href.startsWith("http");
+                  return (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        target={external ? "_blank" : undefined}
+                        rel={external ? "noopener noreferrer" : undefined}
+                        className="text-sm text-[#4a4560] transition-colors hover:text-[#0b0a12]"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
